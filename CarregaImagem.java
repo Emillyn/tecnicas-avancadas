@@ -89,6 +89,7 @@ public class CarregaImagem extends JFrame {
 		lblImagem.setBounds(0, 22, 434, 239);
 		contentPane.add(lblImagem); //a imagem vai aparecer dentro do contentPane
 	}
+<<<<<<< Updated upstream
 	
 	
 	//função para leitura da imagem
@@ -104,6 +105,19 @@ public class CarregaImagem extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 				}		
+=======
+
+	public void carregaImagem() {
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.showOpenDialog(frame);
+		//função para leitura da imagem colorida		
+		try {
+			imagemCarregada.setIcon(new ImageIcon(ImageIO.read(jFileChooser.getSelectedFile()).getScaledInstance(
+					imagemCarregada.getWidth(), imagemCarregada.getHeight(), BufferedImage.TYPE_INT_RGB)));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			}		
+>>>>>>> Stashed changes
 		}
 		
 		//função para sai da aplicação
