@@ -18,12 +18,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class CarregaImagem extends JFrame {
-	private JPanel contentPane;
 	private static CarregaImagem frame;
-	private JMenuBar menuBar;
-	private JMenu mnArquivo;
-	private JMenuItem mntmSelecionaArquivo;
-	private JMenuItem mntmFecharJanela;
 	private JLabel lblImagem;
 
 	public static void main(String[] args) {
@@ -44,7 +39,7 @@ public class CarregaImagem extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
@@ -53,21 +48,21 @@ public class CarregaImagem extends JFrame {
 		lblImagem.setBounds(0, 22, 434, 239);
 		contentPane.add(lblImagem);
 		
-		menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 434, 22);
 		contentPane.add(menuBar);
 		
-		mnArquivo = new JMenu("Arquivo");
+		JMenu mnArquivo = new JMenu("Arquivo");
 		menuBar.add(mnArquivo);
 		
-		mntmSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
+		JMenuItem mntmSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
 		mntmSelecionaArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				imagem();
 			}
 		});
 		
-		mntmFecharJanela = new JMenuItem("Fechar Janela");
+		JMenuItem mntmFecharJanela = new JMenuItem("Fechar Janela");
 		mntmFecharJanela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				close();
