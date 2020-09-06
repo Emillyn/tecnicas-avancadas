@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class CarregaImagem extends JFrame {
 	private static CarregaImagem frame;
-	private JLabel lblImagem;
+	private JLabel imagemCarregada;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,48 +44,48 @@ public class CarregaImagem extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		lblImagem = new JLabel("");
-		lblImagem.setBounds(0, 22, 434, 239);
-		contentPane.add(lblImagem);
+		imagemCarregada = new JLabel("");
+		imagemCarregada.setBounds(0, 22, 434, 239);
+		contentPane.add(imagemCarregada);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 434, 22);
-		contentPane.add(menuBar);
+		JMenuBar menu = new JMenuBar();
+		menu.setBounds(0, 0, 434, 22);
+		contentPane.add(menu);
 		
-		JMenu mnArquivo = new JMenu("Arquivo");
-		menuBar.add(mnArquivo);
+		JMenu arquivo = new JMenu("Arquivo");
+		menu.add(arquivo);
 		
-		JMenuItem mntmSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
-		mntmSelecionaArquivo.addActionListener(new ActionListener() {
+		JMenuItem opcaoSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
+		opcaoSelecionaArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				imagem();
+				carregaImagem();
 			}
 		});
 		
-		JMenuItem mntmFecharJanela = new JMenuItem("Fechar Janela");
-		mntmFecharJanela.addActionListener(new ActionListener() {
+		JMenuItem opcaoFecharJanela = new JMenuItem("Fechar Janela");
+		opcaoFecharJanela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				close();
+				encerraAplicacao();
 			}
 		});
 		
-		mnArquivo.add(mntmSelecionaArquivo);
-		mnArquivo.add(mntmFecharJanela);
+		arquivo.add(opcaoSelecionaArquivo);
+		arquivo.add(opcaoFecharJanela);
 	}
 
-	public void imagem() {
-		JFileChooser jf = new JFileChooser();
-		jf.showOpenDialog(frame);
+	public void carregaImagem() {
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.showOpenDialog(frame);
 				
 		try {
-			lblImagem.setIcon(new ImageIcon(ImageIO.read(jf.getSelectedFile()).getScaledInstance(
-					lblImagem.getWidth(), lblImagem.getHeight(), BufferedImage.TYPE_INT_RGB)));
+			imagemCarregada.setIcon(new ImageIcon(ImageIO.read(jFileChooser.getSelectedFile()).getScaledInstance(
+					imagemCarregada.getWidth(), imagemCarregada.getHeight(), BufferedImage.TYPE_INT_RGB)));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			}		
 		}
 		
-	public void close() {
+	public void encerraAplicacao() {
 		System.exit(0); 
 	}
 }
