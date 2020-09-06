@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class CarregaImagem extends JFrame {
 	private static CarregaImagem frame;
-	private JLabel imagemCarregada;
+	private JLabel Imagem;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,16 +44,16 @@ public class CarregaImagem extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		imagemCarregada = new JLabel("");
-		imagemCarregada.setBounds(0, 22, 434, 239);
-		contentPane.add(imagemCarregada);
+		Imagem = new JLabel("");
+		Imagem.setBounds(0, 22, 434, 239);
+		contentPane.add(Imagem);
 		
-		JMenuBar menu = new JMenuBar();
-		menu.setBounds(0, 0, 434, 22);
+		JMenuBar menuBarra = new JMenuBar();
+		menuBarra.setBounds(0, 0, 434, 22);
 		contentPane.add(menu);
 		
 		JMenu arquivo = new JMenu("Arquivo");
-		menu.add(arquivo);
+		menuBarra.add(arquivo);
 		
 		JMenuItem opcaoSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
 		opcaoSelecionaArquivo.addActionListener(new ActionListener() {
@@ -76,10 +76,10 @@ public class CarregaImagem extends JFrame {
 	public void carregaImagem() {
 		JFileChooser jFileChooser = new JFileChooser();
 		jFileChooser.showOpenDialog(frame);
-				
+		//leitura da Imagem colorida		
 		try {
-			imagemCarregada.setIcon(new ImageIcon(ImageIO.read(jFileChooser.getSelectedFile()).getScaledInstance(
-					imagemCarregada.getWidth(), imagemCarregada.getHeight(), BufferedImage.TYPE_INT_RGB)));
+			Imagem.setIcon(new ImageIcon(ImageIO.read(jFileChooser.getSelectedFile()).getScaledInstance(
+					Imagem.getWidth(), Imagem.getHeight(), BufferedImage.TYPE_INT_RGB)));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			}		
