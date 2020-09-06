@@ -7,36 +7,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 import java.awt.event.ActionEvent;
 
 public class CarregaImagem extends JFrame {
-
-	private JPanel contentPane;
 	private static CarregaImagem frame;
-	private JMenuBar menuBar;
-	private JMenu mnArquivo;
-	private JMenuItem mntmSelecionaArquivo;
-	private JMenuItem mntmFecharJanela;
-	private JLabel lblImagem;
+	private JLabel Imagem;
 
-	
-	/**
-	 * Launch the application.
-	 */
-	
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,64 +34,58 @@ public class CarregaImagem extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	
-	
 	public CarregaImagem() {
 		setTitle("Visualizador de Imagens");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setContentPane(contentPane);
 		
-		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 434, 22);
-		contentPane.add(menuBar);
+		Imagem = new JLabel("");
+		Imagem.setBounds(0, 22, 434, 239);
+		contentPane.add(Imagem);
 		
-		mnArquivo = new JMenu("Arquivo");
-		menuBar.add(mnArquivo);
-		mntmSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
-		mntmSelecionaArquivo.addActionListener(new ActionListener() {
+		JMenuBar menuBarra = new JMenuBar();
+		menuBarra.setBounds(0, 0, 434, 22);
+		contentPane.add(menu);
+		
+		JMenu arquivo = new JMenu("Arquivo");
+		menuBarra.add(arquivo);
+		
+		JMenuItem opcaoSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
+		opcaoSelecionaArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-						imagem();
-				}
-			});
-		mnArquivo.add(mntmSelecionaArquivo);
-		mntmFecharJanela = new JMenuItem("Fechar Janela");
-		mntmFecharJanela.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				close();
+				carregaImagem();
 			}
 		});
-		mnArquivo.add(mntmFecharJanela);
 		
-		lblImagem = new JLabel(""); //label vazio para setar a imagem dentro
-		lblImagem.setBounds(0, 22, 434, 239);
-		contentPane.add(lblImagem); //a imagem vai aparecer dentro do contentPane
+		JMenuItem opcaoFecharJanela = new JMenuItem("Fechar Janela");
+		opcaoFecharJanela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				encerraAplicacao();
+			}
+		});
+		
+		arquivo.add(opcaoSelecionaArquivo);
+		arquivo.add(opcaoFecharJanela);
 	}
-	
-	
-	
-		public void imagem() {
-			JFileChooser jf = new JFileChooser(); //abre a janela de seleção de imagens
-			jf.showOpenDialog(frame);
-				
-				try {
-					//deixando o tamanho da imagem do tamanho do label
-					lblImagem.setIcon(new ImageIcon(ImageIO.read(jf.getSelectedFile()).getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), BufferedImage.TYPE_INT_RGB)));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-				}		
+
+	public void carregaImagem() {
+		JFileChooser jFileChooser = new JFileChooser();
+		jFileChooser.showOpenDialog(frame);
+		//leitura da Imagem colorida		
+		try {
+			Imagem.setIcon(new ImageIcon(ImageIO.read(jFileChooser.getSelectedFile()).getScaledInstance(
+					Imagem.getWidth(), Imagem.getHeight(), BufferedImage.TYPE_INT_RGB)));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+			}		
 		}
 		
-		
-		public void close() {
-			System.exit(0); //fechar jfilechooser e encerrar o programa
-		}
-	
+	public void encerraAplicacao() {
+		System.exit(0); 
+	}
 }
