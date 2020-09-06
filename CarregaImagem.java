@@ -64,12 +64,12 @@ public class CarregaImagem extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 434, 22);
+		menuBarra = new JMenuBar();
+		menuBarra.setBounds(0, 0, 434, 22);
 		contentPane.add(menuBar);
 		//opçoes do menu
 		mnArquivo = new JMenu("Arquivo");
-		menuBar.add(mnArquivo);
+		menuBarra.add(mnArquivo);
 		mntmSelecionaArquivo = new JMenuItem("Seleciona Arquivo");
 		mntmSelecionaArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
